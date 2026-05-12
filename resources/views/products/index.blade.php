@@ -51,7 +51,7 @@
     <tbody>
         @foreach($products as $p)
         <tr>
-            <td>{{ $loop->iteration }}</td>
+            <td>{{ $loop->iteration + ($products->currentPage() - 1) * $products->perPage() }}</td>
             <td>{{ $p->name }}</td>
             <td>{{ $p->category->name }}</td>
             <td>Rp {{ number_format($p->price) }}</td>
