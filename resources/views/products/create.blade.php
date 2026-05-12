@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-    Halaman Create Product
+Halaman Create Product
 @endsection
 @section('content')
 <h1>Input data product</h1>
@@ -52,5 +52,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Simpan</button>
+    <a href="/products" class="btn btn-secondary">Kembali</a>
 </form>
 @endsection
