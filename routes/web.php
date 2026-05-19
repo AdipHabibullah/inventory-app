@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,4 +23,12 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
 Route::fallback(function () {
     return '404 Halaman Tidak Ada';
+});
+
+// Route::resource otomatis akan membuat 7 rute CRUD standar (index, create, 
+// store, show, edit, update, destroy) ke dalam aplikasi.
+Route::resource('categories', CategoryController::class);
+
+Route::get('/hello', function () {
+    return view('hello');
 });

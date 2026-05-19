@@ -20,4 +20,16 @@ class ProductFactory extends Factory
             'stock'       => fake()->numberBetween(1, 100),
         ];
     }
+
+    // public function definition(): array
+    // {
+    //     return [
+    //        'name' => $this->faker->words(3, true),
+    //         'price' => $this->faker->numberBetween(10000, 1000000), // Sesuai tipe BIGINT di image_d4c814.png
+    //         'status' => $this->faker->randomElement(['tersedia', 'habis']), // Sesuai tipe ENUM di image_d4c814.png
+    //         'stock' => $this->faker->numberBetween(1, 100), // Sesuai tipe INT di image_d4c814.png
+    //         'description' => $this->faker->sentence(), // Sesuai tipe TEXT di image_d4c814.png
+    //         'category_id' => $this->faker->randomElement([1, 2, 3, 4]), // Sesuai note: hanya ada 1,2,3,4
+    //     ];
+    // }
 }

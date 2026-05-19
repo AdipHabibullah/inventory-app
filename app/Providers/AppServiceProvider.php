@@ -12,7 +12,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // $this->app->singleton(\Faker\Generator::class, function () {
+        //     return \Faker\Factory::create(config('app.faker_locale', 'id_ID'));
+        // });
     }
 
     /**
