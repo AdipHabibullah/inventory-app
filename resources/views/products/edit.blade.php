@@ -15,7 +15,7 @@
     </div>
     @endif
 
-    <form action="/update-products/{{ $product->id }}" method="POST">
+    <form action="{{ route('products.update', $product->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -61,7 +61,7 @@
                 rows="3">{{ old('description', $product->description) }}</textarea>
         </div>
 
-        <a href="/products" class="btn btn-secondary">Batal</a>
+        <a href="{{ route('products.index') }}" class="btn btn-secondary">Batal</a>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>

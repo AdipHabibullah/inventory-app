@@ -14,27 +14,70 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">Inventory App</a>
-            <div class="collapse navbar-collapse">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <!-- Navigasi Home -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
                     </li>
-                    <!-- Navigasi Produk -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('products*') || request()->is('create*') || request()->is('update-products*') ? 'active' : '' }}" href="{{ url('/products') }}">Product</a>
-                    </li>
-                    <!-- Navigasi Kategori -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('categories*') ? 'active' : '' }}" href="{{ route('categories.index') }}">Category</a>
-                    </li>
+                    @auth
+                        <!-- Navigasi Produk (hanya tampil setelah login) -->
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="{{ route('products.index') }}">Product</a>
+                        </li>
+                        <!-- Navigasi Kategori (hanya tampil setelah login) -->
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('categories*') ? 'active' : '' }}" href="{{ route('categories.index') }}">Category</a>
+                        </li>
+                    @endauth
                 </ul>
+
+                <!-- User Info & Logout -->
+                <div class="d-flex align-items-center">
+                    @auth
+                        <div class="navbar-text me-3 text-white">
+                            Halo, <strong>{{ Auth::user()->name }}</strong>
+                            <span class="badge bg-{{ Auth::user()->role === 'admin' ? 'danger' : 'secondary' }} ms-1">
+                                {{ ucfirst(Auth::user()->role) }}
+                            </span>
+                        </div>
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-sm">Login</a>
+                    @endauth
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- BAGIAN TENGAH: KONTEN DINAMIS -->
     <main class="container my-5 flex-grow-1">
+        {{-- Flash messages global --}}
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+        @if(session('info'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ session('info') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+
         @yield('content')
     </main>
 

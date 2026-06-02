@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="/create" method="POST">
+    <form action="{{ route('products.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Nama Barang</label>
@@ -54,7 +54,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="/products" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('products.index') }}" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 @endsection
