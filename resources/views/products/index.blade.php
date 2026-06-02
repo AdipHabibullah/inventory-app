@@ -3,6 +3,7 @@
     Halaman Data Product
 @endsection
 @section('content')
+<div class="container py-4">
     <h1>Daftar Barang Inventaris</h1>
 
     <a href="/create" class="btn btn-primary mb-3">Tambah Data</a>
@@ -44,4 +45,5 @@
         </tbody>
     </table>
     {{ $products->links() }}
+</div>
 @endsection

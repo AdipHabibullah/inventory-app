@@ -3,6 +3,7 @@
     Halaman Create Product
 @endsection
 @section('content')
+<div class="container py-4">
     <h1>Input data product</h1>
 
     {{-- Notifikasi sukses --}}
@@ -55,4 +56,5 @@
         <button type="submit" class="btn btn-primary">Simpan</button>
         <a href="/products" class="btn btn-secondary">Kembali</a>
     </form>
+</div>
 @endsection
